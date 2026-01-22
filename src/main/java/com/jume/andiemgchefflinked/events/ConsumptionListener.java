@@ -8,7 +8,6 @@ import com.hypixel.hytale.server.core.inventory.transaction.ItemStackSlotTransac
 import com.hypixel.hytale.server.core.inventory.transaction.ItemStackTransaction;
 import com.hypixel.hytale.server.core.inventory.transaction.SlotTransaction;
 import com.hypixel.hytale.server.core.inventory.transaction.Transaction;
-import com.hypixel.hytale.server.core.Message;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,12 +38,12 @@ public class ConsumptionListener {
 
         if (configManager.hasItem(itemId)) {
             float[] stats = configManager.getStats(itemId);
-            float hungerInfo = stats[0];
+
             float thirstInfo = stats[1];
 
-            // Feedback
-            player.sendMessage(Message
-                    .raw("SurvivalExtended: Consumed " + itemId + " (H:+" + hungerInfo + ", T:+" + thirstInfo + ")"));
+            // Feedback removed as per user request
+            // player.sendMessage(Message.raw("SurvivalExtended: Consumed " + itemId + "
+            // (H:+" + hungerInfo + ", T:+" + thirstInfo + ")"));
 
             // Apply Thirst Logic Here (Add your ThirstComponent integration or placeholder)
             applyThirst(player, thirstInfo);

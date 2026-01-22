@@ -6,5 +6,33 @@
     "Andiechef_Food_Item_Soya": [
         2.0,
         8.0
+    ],
+    "Andiechef_Food_Nigiri": [
+        12.0,
+        2.0
+    ],
+    "Andiechef_Food_Onigiri": [
+        15.0,
+        3.0
+    ],
+    "Andiechef_Food_Sake": [
+        2.0,
+        20.0
+    ],
+    "Andiechef_Ingredient_SalsaSoya": [
+        1.0,
+        5.0
+    ],
+    "Andiechef_Ingredient_Wasabi": [
+        1.0,
+        0.0
+    ],
+    "Andiechef_Item_Soya_Fermentada": [
+        4.0,
+        1.0
+    ],
+    "Andiechef_Food_BubbleTea": [
+        4.0,
+        15.0
     ]
 }
