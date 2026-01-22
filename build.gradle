@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'com.jume.andiemgchefflinked'
-version = '1.0.1'
+version = '1.0.2'
 
 
 java {
