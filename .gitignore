@@ -5,3 +5,7 @@ temp_*/
 *.class
 *.jar
 .DS_Store
+.vscode/
+*.log
+run/
+checkouts/
