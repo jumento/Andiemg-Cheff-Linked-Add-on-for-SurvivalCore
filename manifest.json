@@ -1,0 +1,12 @@
+{
+  "Group": "com.jume.andiemgchefflinked",
+  "Name": "Andiemg Cheff Linked",
+  "Version": "1.0.0",
+  "Description": "Extends SurvivalCore with Thirst mechanics and parallel configuration.",
+  "Main": "com.jume.andiemgchefflinked.SurvivalCoreExtended",
+  "Authors": [
+    {
+      "Name": "Antigravity"
+    }
+  ]
+}
