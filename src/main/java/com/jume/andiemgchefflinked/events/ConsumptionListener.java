@@ -16,8 +16,45 @@ public class ConsumptionListener {
     private static final Logger LOGGER = LoggerFactory.getLogger(ConsumptionListener.class);
     private final ConfigManager configManager;
 
+    // Reflection Cache
+    private Class<?> easyHungerClass;
+    private Object easyHungerInstance;
+    private java.lang.reflect.Method getThirstCompTypeMethod;
+    private Object thirstComponentType;
+    private java.lang.reflect.Method getComponentMethod;
+    private java.lang.reflect.Method drinkMethod;
+    private boolean reflectionInitialized = false;
+
     public ConsumptionListener(ConfigManager configManager) {
         this.configManager = configManager;
+        initializeReflection();
+    }
+
+    private void initializeReflection() {
+        try {
+            easyHungerClass = Class.forName("com.haas.easyhunger.EasyHunger");
+            java.lang.reflect.Method getMethod = easyHungerClass.getMethod("get");
+            easyHungerInstance = getMethod.invoke(null);
+
+            getThirstCompTypeMethod = easyHungerClass.getMethod("getThirstComponentType");
+            thirstComponentType = getThirstCompTypeMethod.invoke(easyHungerInstance);
+
+            // We can't easily cache 'getComponentMethod' cleanly without an instance to get
+            // the class from,
+            // but we can try to guess or just look it up once if we know the interface.
+            // For safety, we'll look up getComponentMethod lazily or just cache the name
+            // lookup if possible.
+            // However, 'drink' method is on the component class. We need the component
+            // class first.
+            // Since we don't have a component instance yet, we can't fully cache the
+            // 'drink' method here
+            // unless we know the exact class name of the component.
+            // But we can certainly cache the EasyHunger instance and the ComponentType.
+
+            reflectionInitialized = true;
+        } catch (Exception e) {
+            LOGGER.error("Failed to initialize Reflection for EasyHunger: " + e.toString());
+        }
     }
 
     public void onInventoryChange(LivingEntityInventoryChangeEvent event) {
@@ -45,7 +82,7 @@ public class ConsumptionListener {
             // player.sendMessage(Message.raw("SurvivalExtended: Consumed " + itemId + "
             // (H:+" + hungerInfo + ", T:+" + thirstInfo + ")"));
 
-            // Apply Thirst Logic Here (Add your ThirstComponent integration or placeholder)
+            // Apply Thirst Logic
             applyThirst(player, thirstInfo);
         }
     }
@@ -105,29 +142,29 @@ public class ConsumptionListener {
     }
 
     private void applyThirst(Player player, float amount) {
+        if (!reflectionInitialized)
+            return;
+
         try {
-            // 1. Get the EasyHunger plugin instance via Reflection/Static helper
-            Class<?> easyHungerClass = Class.forName("com.haas.easyhunger.EasyHunger");
-            Object easyHungerInstance = easyHungerClass.getMethod("get").invoke(null);
-
-            // 2. Get the ThirstComponentType
-            java.lang.reflect.Method getThirstCompTypeMethod = easyHungerClass.getMethod("getThirstComponentType");
-            Object thirstComponentType = getThirstCompTypeMethod.invoke(easyHungerInstance);
-
             // 3. Get the entity's store
             Object store = player.getReference().getStore();
 
             // 4. Access the ThirstComponent from the store
-            // Assuming store.getComponent(entityRef, componentType)
-            // Method signature: getComponent(Ref<EntityStore>, ComponentType<EntityStore,
-            // T>)
-            java.lang.reflect.Method getComponentMethod = store.getClass().getMethod("getComponent",
-                    com.hypixel.hytale.component.Ref.class, com.hypixel.hytale.component.ComponentType.class);
+            if (getComponentMethod == null) {
+                getComponentMethod = store.getClass().getMethod("getComponent",
+                        com.hypixel.hytale.component.Ref.class, com.hypixel.hytale.component.ComponentType.class);
+            }
+
             Object thirstComponent = getComponentMethod.invoke(store, player.getReference(), thirstComponentType);
 
             if (thirstComponent != null) {
                 // 5. Call drink(amount) on the component
-                java.lang.reflect.Method drinkMethod = thirstComponent.getClass().getMethod("drink", float.class);
+                // Cache drink method if possible, but might vary by implementation class?
+                // Unlikely.
+                if (drinkMethod == null) {
+                    drinkMethod = thirstComponent.getClass().getMethod("drink", float.class);
+                }
+
                 drinkMethod.invoke(thirstComponent, amount);
                 LOGGER.info(
                         "Applied " + amount + " thirst to " + player.getDisplayName() + " via EasyHunger integration.");

@@ -2,7 +2,7 @@
   "id": "survival_core_extended",
   "Name": "SurvivalCore-Extended",
   "Group": "com.jume.andiemgchefflinked",
-  "Version": "1.0.3",
+  "Version": "1.0.4",
   "Description": "Extends SurvivalCore with Thirst mechanics and parallel configuration.",
   "Main": "com.jume.andiemgchefflinked.SurvivalCoreExtended",
   "schemaVersion": 1
