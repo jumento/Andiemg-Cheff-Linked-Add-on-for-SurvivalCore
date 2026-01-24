@@ -1,0 +1,156 @@
+$C = "../Common.ui";
+
+@PrimaryButtonStyle = TextButtonStyle(
+  Default: (Background: #4CAF50, LabelStyle: (FontSize: 16, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+  Hovered: (Background: #66BB6A, LabelStyle: (FontSize: 16, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+  Pressed: (Background: #388E3C, LabelStyle: (FontSize: 16, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center))
+);
+
+@CancelButtonStyle = TextButtonStyle(
+  Default: (Background: #F44336, LabelStyle: (FontSize: 16, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+  Hovered: (Background: #EF5350, LabelStyle: (FontSize: 16, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+  Pressed: (Background: #C62828, LabelStyle: (FontSize: 16, TextColor: #ffffff, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center))
+);
+
+Group {
+  Anchor: (Width: 500, Height: 420);
+  Background: #141c26(0.98);
+  LayoutMode: Top;
+  Padding: (Full: 25);
+
+  Label {
+    Text: "Andiemg Cheff Configuration";
+    Anchor: (Height: 45);
+    Style: (
+      FontSize: 24,
+      TextColor: #FFD700,
+      HorizontalAlignment: Center,
+      RenderBold: true
+    );
+  }
+
+  Label {
+    Text: "Edit hunger and thirst values for food items";
+    Anchor: (Height: 25);
+    Style: (
+      FontSize: 13,
+      TextColor: #96a9be,
+      HorizontalAlignment: Center
+    );
+  }
+
+  Group {
+    Anchor: (Height: 1);
+    Background: #2b3542;
+  }
+
+  Group { Anchor: (Height: 20); }
+
+  Group {
+    LayoutMode: Left;
+    Anchor: (Height: 44);
+
+    Label {
+      Text: "Item Name";
+      Anchor: (Width: 130);
+      Style: (FontSize: 14, TextColor: #96a9be, VerticalAlignment: Center);
+    }
+
+    $C.@TextField #ItemInput {
+      FlexWeight: 1;
+      PlaceholderText: "e.g., Andiechef_Food_Rollo";
+    }
+  }
+
+  Group { Anchor: (Height: 12); }
+
+  Group {
+    LayoutMode: Left;
+    Anchor: (Height: 44);
+
+    Label {
+      Text: "Hunger Value";
+      Anchor: (Width: 130);
+      Style: (FontSize: 14, TextColor: #96a9be, VerticalAlignment: Center);
+    }
+
+    $C.@TextField #HungerInput {
+      FlexWeight: 1;
+      PlaceholderText: "20.0";
+    }
+  }
+
+  Group { Anchor: (Height: 12); }
+
+  Group {
+    LayoutMode: Left;
+    Anchor: (Height: 44);
+
+    Label {
+      Text: "Thirst Value";
+      Anchor: (Width: 130);
+      Style: (FontSize: 14, TextColor: #96a9be, VerticalAlignment: Center);
+    }
+
+    $C.@TextField #ThirstInput {
+      FlexWeight: 1;
+      PlaceholderText: "5.0";
+    }
+  }
+
+  Group { Anchor: (Height: 20); }
+
+  Group {
+    Anchor: (Height: 1);
+    Background: #2b3542(0.5);
+  }
+
+  Group { Anchor: (Height: 16); }
+
+  Label {
+    Text: "Available Items:";
+    Anchor: (Height: 18);
+    Style: (FontSize: 11, TextColor: #4a5568, LetterSpacing: 1);
+  }
+
+  Group { Anchor: (Height: 8); }
+
+  Label {
+    Text: "Andiechef_Food_Rollo, Andiechef_Food_Item_Soya, Andiechef_Food_Nigiri,";
+    Anchor: (Height: 16);
+    Style: (FontSize: 10, TextColor: #6a7588);
+  }
+
+  Label {
+    Text: "Andiechef_Food_Onigiri, Andiechef_Food_Sake, Andiechef_Ingredient_SalsaSoya,";
+    Anchor: (Height: 16);
+    Style: (FontSize: 10, TextColor: #6a7588);
+  }
+
+  Label {
+    Text: "Andiechef_Ingredient_Wasabi, Andiechef_Item_Soya_Fermentada, Andiechef_Food_BubbleTea";
+    Anchor: (Height: 16);
+    Style: (FontSize: 10, TextColor: #6a7588);
+  }
+
+  Group { FlexWeight: 1; }
+
+  Group {
+    LayoutMode: Center;
+    Anchor: (Height: 44);
+
+    TextButton #SaveButton {
+      Text: "SAVE";
+      Anchor: (Width: 110, Height: 40);
+      Style: @PrimaryButtonStyle;
+    }
+
+    Group { Anchor: (Width: 16); }
+
+    TextButton #CancelButton {
+      Text: "CANCEL";
+      Anchor: (Width: 110, Height: 40);
+      Style: @CancelButtonStyle;
+    }
+  }
+}

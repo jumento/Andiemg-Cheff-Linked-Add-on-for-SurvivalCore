@@ -105,4 +105,26 @@ public class ConfigManager {
     public boolean hasItem(String itemName) {
         return consumptionValues.containsKey(itemName);
     }
+
+    public void updateItemValues(String itemName, float hunger, float thirst) {
+        consumptionValues.put(itemName, new float[] { hunger, thirst });
+    }
+
+    public void saveConfig() {
+        File dataFolder = new File("mods/Andiemg Cheff Linked");
+        File configFile = new File(dataFolder, CONFIG_FILE_NAME);
+
+        try (java.io.FileWriter writer = new java.io.FileWriter(configFile)) {
+            Gson gson = new Gson().newBuilder().setPrettyPrinting().create();
+            gson.toJson(consumptionValues, writer);
+            LOGGER.info("Configuration saved to disk.");
+        } catch (IOException e) {
+            LOGGER.error("Failed to save configuration!", e);
+            throw new RuntimeException("Failed to save configuration", e);
+        }
+    }
+
+    public Map<String, float[]> getAllItems() {
+        return new HashMap<>(consumptionValues);
+    }
 }

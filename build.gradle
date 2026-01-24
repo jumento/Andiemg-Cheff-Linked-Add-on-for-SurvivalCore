@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'com.jume.andiemgchefflinked'
-version = '1.0.4'
+version = '1.0.5'
 
 
 java {
@@ -35,11 +35,20 @@ dependencies {
 }
 
 jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    
     manifest {
         attributes(
             'Main-Class': 'com.jume.andiemgchefflinked.SurvivalCoreExtended'
         )
     }
+    
+    // Include resources from main/resources
+    from('src/main/resources') {
+        include '**/*'
+    }
+    
     // Exclude the stubs from the final JAR
     exclude 'net/hytale/**'
 }
+

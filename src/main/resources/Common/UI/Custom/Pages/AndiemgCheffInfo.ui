@@ -1,0 +1,73 @@
+$C = "../Common.ui";
+
+Group {
+  Anchor: (Width: 600, Height: 500);
+  Background: #141c26(0.98);
+  LayoutMode: Top;
+  Padding: (Full: 20);
+
+  Label {
+    Text: "Andiemg Cheff - Configuration Info";
+    Anchor: (Height: 40);
+    Style: (
+      FontSize: 22,
+      TextColor: #FFD700,
+      HorizontalAlignment: Center,
+      RenderBold: true
+    );
+  }
+
+  Group {
+    Anchor: (Height: 1);
+    Background: #2b3542;
+  }
+
+  Group { Anchor: (Height: 16); }
+
+  Label {
+    Text: "Current Hunger / Thirst values:";
+    Anchor: (Height: 25);
+    Style: (FontSize: 14, TextColor: #96a9be);
+  }
+
+  Group { Anchor: (Height: 12); }
+
+  // Scrollable content area
+  Group #ContentArea {
+    FlexWeight: 1;
+    LayoutMode: Top;
+    Padding: (Full: 10);
+
+    // These labels will be populated dynamically from Java
+    Label #ConfigInfo {
+      Text: "Loading...";
+      Anchor: (Height: 350);
+      Style: (FontSize: 12, TextColor: #ffffff);
+    }
+  }
+
+  Group { Anchor: (Height: 16); }
+
+  Group {
+    Anchor: (Height: 1);
+    Background: #2b3542(0.5);
+  }
+
+  Group { Anchor: (Height: 16); }
+
+  // Close button
+  Group {
+    LayoutMode: Center;
+    Anchor: (Height: 44);
+
+    TextButton #CloseButton {
+      Text: "CLOSE";
+      Anchor: (Width: 150, Height: 40);
+      Style: TextButtonStyle(
+        Default: (Background: #2b3542, LabelStyle: (FontSize: 14, TextColor: #96a9be, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+        Hovered: (Background: #3b4552, LabelStyle: (FontSize: 14, TextColor: #b6c9de, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center)),
+        Pressed: (Background: #1b2532, LabelStyle: (FontSize: 14, TextColor: #96a9be, RenderBold: true, HorizontalAlignment: Center, VerticalAlignment: Center))
+      );
+    }
+  }
+}
