@@ -9,3 +9,10 @@ temp_*/
 *.log
 run/
 checkouts/
+
+# Temporary documentation and deployment files
+INSTALACION.md
+INSTRUCCIONES_CRITICAS.md
+*-Deploy.zip
+deploy/
+UI_README.md
