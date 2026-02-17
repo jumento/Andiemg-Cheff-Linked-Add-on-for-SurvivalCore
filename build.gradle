@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'com.jume.andiemgchefflinked'
-version = '1.0.5'
+version = '1.0.6'
 
 
 java {
@@ -29,7 +29,7 @@ sourceSets {
 }
 
 dependencies {
-    compileOnly files('C:/Users/jume/.gemini/antigravity/scratch/ProtectionBlock-hytale-edition/libs/HytaleServer.jar')
+    compileOnly files('libs/HytaleServer.jar')
     compileOnly 'com.google.code.gson:gson:2.10.1'
     compileOnly 'org.slf4j:slf4j-api:2.0.9'
 }

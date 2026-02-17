@@ -1,7 +1,8 @@
 {
   "Group": "com.jume.andiemgchefflinked",
   "Name": "Andiemg Cheff Linked",
-  "Version": "1.0.5",
+  "Version": "1.0.6",
+  "ServerVersion": "2026.02.17-255364b8e",
   "Description": "Add-on for SurvivalCore (EasyHunger) - Links thirst and hunger mechanics to custom items.",
   "Website": "https://www.curseforge.com/members/jume/projects",
   "Main": "com.jume.andiemgchefflinked.SurvivalCoreExtended",
